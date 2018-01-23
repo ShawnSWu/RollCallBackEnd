@@ -6,4 +6,4 @@ port = int(os.environ.get('PORT', 33507))
 
 # 確保被導入時不執行
 if __name__ == '__main__':
-    app.run(port=port)
+    app.run(host='rollcallbackend.herokuapp.com', port=port)
