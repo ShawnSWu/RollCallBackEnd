@@ -1,0 +1,7 @@
+{
+  "name": "RollCall on Heroku",
+  "description": "RollCall BackEnd of deploying Flask web app to Heroku.",
+  "image": "heroku/python",
+  "repository": "https://git.heroku.com/rollcallbackend.git",
+  "keywords": ["python", "flask" ]
+}
