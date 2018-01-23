@@ -1,11 +1,9 @@
 from flask import Blueprint
 from flask import request, abort
-import hashlib
-import json
 from RC_sql.mysql import *
-import re
+import hashlib, json, re
 
-account_Request = Blueprint('loginRequest', __name__)
+account_Request = Blueprint('request', __name__)
 
 
 @account_Request.route("/login", methods=['POST'])
@@ -21,7 +19,6 @@ def login():
     return json.dumps(auth_account(account, sha256_password))
 
 
-# 補上輸入規則
 def auth_account(account, password):
     if validate_email(str(account)) is not True:
         return 'account is not ok'

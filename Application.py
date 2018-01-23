@@ -8,5 +8,5 @@ def create_app():
     def index():
         return "Hello RollCall User"
 
-    app.register_blueprint(account_Request, url_prefix="/accountManger")
+    app.register_blueprint(account_Request, url_prefix="/account")
     return app
