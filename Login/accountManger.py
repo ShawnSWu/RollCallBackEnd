@@ -3,7 +3,8 @@ from flask import request, abort
 from RC_sql.mysql import *
 import hashlib, json, re
 
-account_Request = Blueprint('request', __name__)
+
+account_Request = Blueprint('account_request', __name__)
 
 
 @account_Request.route("/login", methods=['POST'])
@@ -41,7 +42,6 @@ def validate_email(email):
     return False
 
 
-# 檢查帳號是否重複
 @account_Request.route("/signup", methods=['POST'])
 def signup():
     if not request.json:
@@ -56,7 +56,7 @@ def signup():
     sha256_password = hashlib.sha256(str(signup_password).encode('utf-8')).hexdigest()
 
     signup_account_if_ok = auth_if_repeat_account(signup_account)
-    # 沒重複 返回false
+    # 沒重複帳號 返回false
     if signup_account_if_ok is False:
         sql_command = "insert into user_info values ('%s','%s','%s')" % (str(signup_account),
                                                                          str(sha256_password), str(signup_name))
@@ -79,3 +79,5 @@ def auth_if_repeat_account(signup_account):
             return False
         else:
             return True
+
+
