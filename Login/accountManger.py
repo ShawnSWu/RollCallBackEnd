@@ -60,7 +60,7 @@ def signup():
     if signup_account_if_ok is False:
         sql_command = "insert into user_info values ('%s','%s','%s')" % (str(signup_account),
                                                                          str(sha256_password), str(signup_name))
-        mysql_insert_data(sql_command)
+        mysql_command(sql_command)
         return json.dumps('Signup Success')
     else:
         return json.dumps('Signup Fail')
