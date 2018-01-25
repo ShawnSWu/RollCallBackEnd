@@ -58,7 +58,7 @@ def insert_newData_to_oldList():
     if insert_result is True:
         return_message = 'insert Success'
     else:
-        return_message = 'insert Fail'
+        return_message = 'insert Fail (SQL Error)'
 
     return json.dumps(return_message)
 
