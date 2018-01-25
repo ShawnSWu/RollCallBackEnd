@@ -77,10 +77,16 @@ example:
   ] 
 
 }
-```
 
-insert_type choose:add_new,extra_add:
+
+insert_type choose：add_new,extra_add:<br>
 extra_add meaning won't delete earlier data
+```
+| insert_type | Meaning |
+| ------| ------ | 
+| add_new | add a few new data | 
+| extra_add | won't delete earlier data | 
+
 
 #### Response
 ```
