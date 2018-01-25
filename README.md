@@ -15,7 +15,6 @@
 {
   "account":"email",
   "password": "password"
-
 }
 ```
 
