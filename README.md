@@ -3,7 +3,7 @@
 # API
  http://rollcallbackend.herokuapp.com/
 
-## login
+## sign up
 #### Request
 - Method: **POST**
 - URL:  ```/rollcallbackend.herokuapp.com/account/login```
@@ -16,6 +16,30 @@
   "account":"email",
   "password": "password"
 
+}
+```
+
+#### Response
+```
+Signup Success or Signup Fail
+```
+
+
+
+
+## log in
+#### Request
+- Method: **POST**
+- URL:  ```/rollcallbackend.herokuapp.com/account/signup```
+   
+- Headers：
+    ```Content-Type: application/json```
+- Body:
+```
+{
+  "signup_account":"email",
+  "signup_password": "password",
+  "signup_name": "username"
 }
 ```
 
