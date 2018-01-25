@@ -13,7 +13,7 @@
 example:
 
 {
-  "insert_type":"addnew",
+  "insert_type":"add_new",
   "account":"swshawnwu@gmail.com",
   "list_name": "日本團",
   "data_list":
