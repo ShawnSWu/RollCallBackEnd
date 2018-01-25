@@ -3,7 +3,7 @@
 # API
  http://rollcallbackend.herokuapp.com/
 
-## 登入
+## login
 #### Request
 - Method: **POST**
 - URL:  ```/rollcallbackend.herokuapp.com/account/login```
