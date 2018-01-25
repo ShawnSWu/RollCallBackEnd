@@ -1,32 +1,25 @@
 # RollCallBackEnd
 
-# API接口
+# API
+ http://rollcallbackend.herokuapp.com/
 
-## 注册
-
-### 获取验证码
-
-目前有4种短信验证码，对应的type是：
-- 注册短信验证码： register
-- 修改密码短信验证码: changePassword
-- 修改手机短信验证码: changePhoneNumber
-- 验证手机号短信验证码: verifyPhoneNumber
+## 登入
 #### Request
-- Method: **GET**
-- URL:  ```/v1.0/open/smscode?type={type}&phone={phone}```
-    - register for new user:  ```/v1.0/open/smscode?type=register&phone=13811119999```
-    - forgot password: ```/v1.0/open/smscode?type=changePassword&phone=13822224444```
+- Method: **POST**
+- URL:  ```/rollcallbackend.herokuapp.com/account/login```
+   
 - Headers：
+    ```Content-Type: application/json```
 - Body:
 ```
+{
+  "account":"email",
+  "password": "password"
+
+}
 ```
 
 #### Response
-- Body
 ```
-{
-  "code": 200,
-  "data": "730781",
-  "message": "OK"
-}
+True or False
 ```
