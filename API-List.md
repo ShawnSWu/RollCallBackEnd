@@ -36,3 +36,51 @@ example:
 ```
 Response: Signup insert Success or Signup insert Fail
 ```
+
+
+
+
+
+
+
+## Get List Data
+#### Request
+- Method: **POST**
+- URL:  ```/rollcallbackend.herokuapp.com/list/getlistdata```
+   
+- Headers：
+    ```Content-Type: application/json```
+- Body:
+```
+example:
+
+{
+  "account":"swshawnwu@gmail.com",
+  "list_name": "日本團"
+}
+```
+#### Response
+```
+Data list(Json)
+```
+
+
+## Get All List name in account
+#### Request
+- Method: **POST**
+- URL:  ```/rollcallbackend.herokuapp.com/list/getalllistdata```
+   
+- Headers：
+    ```Content-Type: application/json```
+- Body:
+```
+example:
+
+{
+  "account":"swshawnwu@gmail.com"
+}
+```
+#### Response
+```
+ list Data(Json)
+```
