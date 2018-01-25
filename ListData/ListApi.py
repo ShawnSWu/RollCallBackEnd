@@ -25,7 +25,65 @@ def get_list_data():
         list_value = data[1]
         return_json_dict[list_key] = list_value
 
-    return json.dumps(return_json_dict)
+    return json.dumps(return_json_dict, ensure_ascii=False)
+
+
+@list_Request.route("/getalllistdata", methods=['POST'])
+def get_all_list_data():
+    if not request.json:
+        abort(404)
+
+    json_dict = request.json
+    account = json_dict['account']
+    sql_command = "select listname from user_list_info where account = '%s' group by listname" % (
+        str(account))
+    result = get_mysql_data(sql_command)
+
+    return_list = []
+
+    for data in result:
+        for listname in data:
+            return_list.append(listname)
+
+    print(return_list)
+    return json.dumps(return_list, ensure_ascii=False)
+
+
+@list_Request.route("/insertnewlist", methods=['POST'])
+def insert_new_List():
+    if not request.json:
+        abort(404)
+
+    json_dict = request.json
+    account = json_dict['account']
+    return_message = None
+    # 檢查是否重複
+    new_list_name = json_dict['new_list_name']
+    if __auth_if_repeat_list(account, new_list_name) is False:
+        sql_command = "insert into user_list_info values ('%s', '%s', '', '') " % (str(account), str(new_list_name))
+
+        insert_result = mysql_command(sql_command)
+        if insert_result is True:
+            return_message = 'insert Success'
+        else:
+            return_message = 'insert Fail (SQL Error)'
+
+    else:
+        return_message = 'Repeat List'
+
+    return json.dumps(return_message, ensure_ascii=False)
+
+
+def __auth_if_repeat_list(account, new_list_name):
+    # 如果有重複 返回True 沒有重複返回False
+    sql_command = "select listname from user_list_info where account = '%s' and listname = '%s'" % (
+        str(account), str(new_list_name))
+    rowcount = get_row_count(sql_command)
+
+    if rowcount >= 1:
+        return True
+    else:
+        return False
 
 
 @list_Request.route("/insertnewdatatolist", methods=['POST'])
@@ -60,7 +118,7 @@ def insert_newData_to_oldList():
     else:
         return_message = 'insert Fail (SQL Error)'
 
-    return json.dumps(return_message)
+    return json.dumps(return_message, ensure_ascii=False)
 
 
 def __delete_list_data(account, list_name):

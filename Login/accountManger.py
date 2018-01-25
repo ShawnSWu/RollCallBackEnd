@@ -18,7 +18,7 @@ def login():
     password.encode('utf-8')
     sha256_password = hashlib.sha256(str(password).encode('utf-8')).hexdigest()
     print(sha256_password)
-    return json.dumps(auth_account(account, sha256_password))
+    return json.dumps(auth_account(account, sha256_password), ensure_ascii=False)
 
 
 def auth_account(account, sha256_password):
@@ -52,7 +52,7 @@ def signup():
     signup_password = json_dict['signup_password']
     signup_name = json_dict['signup_name']
 
-    signup_password.encode('utf-8')
+    signup_name.encode('utf-8')
     sha256_password = hashlib.sha256(str(signup_password).encode('utf-8')).hexdigest()
     return_message = None
 
@@ -69,7 +69,7 @@ def signup():
     else:
         return_message = 'repeat account'
 
-    return json.dumps(return_message)
+    return json.dumps(return_message, ensure_ascii=False)
 
 
 def auth_if_repeat_account(signup_account):
@@ -86,3 +86,17 @@ def auth_if_repeat_account(signup_account):
             return True
 
 
+@account_Request.route("/getprocfiledata", methods=['POST'])
+def get_procfile_data():
+    if not request.json:
+        abort(404)
+
+    json_dict = request.json
+    account = json_dict['account']
+    password = json_dict['password']
+
+    sql_command = "select account,name from user_info where account = '%s'" % account
+
+    insert_result = get_mysql_data(sql_command)
+
+    return json.dumps(insert_result[0], ensure_ascii=False)
