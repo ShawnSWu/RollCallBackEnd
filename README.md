@@ -6,7 +6,7 @@
 ## sign up
 #### Request
 - Method: **POST**
-- URL:  ```/rollcallbackend.herokuapp.com/account/login```
+- URL:  ```/rollcallbackend.herokuapp.com/account/signup```
    
 - Headers：
     ```Content-Type: application/json```
@@ -30,7 +30,7 @@ Signup Success or Signup Fail
 ## log in
 #### Request
 - Method: **POST**
-- URL:  ```/rollcallbackend.herokuapp.com/account/signup```
+- URL:  ```/rollcallbackend.herokuapp.com/account/login```
    
 - Headers：
     ```Content-Type: application/json```
