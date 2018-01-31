@@ -100,10 +100,10 @@ def get_procfile_data():
 
     insert_result = get_mysql_data(sql_command)
 
-    username = insert_result[0][1]
+    userName = insert_result[0][1]
     userEmail = insert_result[0][0]
 
-    return_json_type = {'username': username, 'userEmail': userEmail}
+    return_json_type = {'userName': userName, 'userEmail': userEmail}
 
     print(type(return_json_type))
 
