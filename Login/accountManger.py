@@ -2,6 +2,7 @@ from flask import Blueprint
 from flask import request, abort
 from RC_sql.mysql import *
 import hashlib, json, re
+from Login import UserInfo
 
 
 account_Request = Blueprint('account_request', __name__)
@@ -65,7 +66,7 @@ def signup():
         if insert_result is True:
             return_message = 'Signup Success'
         else:
-            return_message = 'Signup Fail (SQL Error)'
+            return_message = 'Signup Fail'
     else:
         return_message = 'repeat account'
 
@@ -99,4 +100,11 @@ def get_procfile_data():
 
     insert_result = get_mysql_data(sql_command)
 
-    return json.dumps(insert_result[0], ensure_ascii=False)
+    username = insert_result[0][1]
+    userEmail = insert_result[0][0]
+
+    return_json_type = {'username': username, 'userEmail': userEmail}
+
+    print(type(return_json_type))
+
+    return json.dumps(return_json_type, ensure_ascii=False)
