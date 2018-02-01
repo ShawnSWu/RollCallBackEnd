@@ -52,6 +52,8 @@ def signup():
     signup_account = json_dict['signup_account']
     signup_password = json_dict['signup_password']
     signup_name = json_dict['signup_name']
+    profile_image = json_dict['profile_image']
+
 
     signup_name.encode('utf-8')
     sha256_password = hashlib.sha256(str(signup_password).encode('utf-8')).hexdigest()
@@ -60,8 +62,8 @@ def signup():
     # 沒重複帳號 返回false
     signup_account_if_ok = auth_if_repeat_account(signup_account)
     if signup_account_if_ok is False:
-        sql_command = "insert into user_info values ('%s','%s','%s')" % (str(signup_account),
-                                                                         str(sha256_password), str(signup_name))
+        sql_command = "insert into user_info values ('%s','%s','%s','%s')" % (str(signup_account),
+                                                                         str(sha256_password), str(signup_name), str(profile_image))
         insert_result = mysql_command(sql_command)
         if insert_result is True:
             return_message = 'Signup Success'
