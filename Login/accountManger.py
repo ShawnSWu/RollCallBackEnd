@@ -96,15 +96,33 @@ def get_procfile_data():
     account = json_dict['account']
     password = json_dict['password']
 
-    sql_command = "select account,name from user_info where account = '%s'" % account
+    sql_command = "select account,name,profile_image from user_info where account = '%s'" % account
 
     insert_result = get_mysql_data(sql_command)
 
-    userName = insert_result[0][1]
     userEmail = insert_result[0][0]
+    userName = insert_result[0][1]
+    userProfileImage = insert_result[0][2]
 
-    return_json_type = {'userName': userName, 'userEmail': userEmail}
+    return_json_type = {'userName': userName, 'userEmail': userEmail, 'userProfileImage': userProfileImage}
 
     print(type(return_json_type))
 
     return json.dumps(return_json_type, ensure_ascii=False)
+
+
+@account_Request.route("/saveprofileimage", methods=['POST'])
+def save_profile_image():
+    if not request.json:
+        abort(404)
+
+    json_dict = request.json
+    account = json_dict['account']
+    password = json_dict['password']
+    profile_image = json_dict['profile_image']
+
+    sql_command = "update user_info SET profile_image = '%s' where account = '%s'" % (profile_image, account)
+
+    insert_result = mysql_command(sql_command)
+
+    return json.dumps(insert_result, ensure_ascii=False)
