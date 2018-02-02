@@ -54,7 +54,6 @@ def signup():
     signup_name = json_dict['signup_name']
     profile_image = json_dict['profile_image']
 
-
     signup_name.encode('utf-8')
     sha256_password = hashlib.sha256(str(signup_password).encode('utf-8')).hexdigest()
     return_message = None

@@ -28,27 +28,6 @@ def get_list_data():
     return json.dumps(return_json_dict, ensure_ascii=False)
 
 
-@list_Request.route("/getalllistdata", methods=['POST'])
-def get_all_list_data():
-    if not request.json:
-        abort(404)
-
-    json_dict = request.json
-    account = json_dict['account']
-    sql_command = "select listname from user_list_info where account = '%s' group by listname" % (
-        str(account))
-    result = get_mysql_data(sql_command)
-
-    return_list = []
-
-    for data in result:
-        for listname in data:
-            return_list.append(listname)
-
-    print(return_list)
-    return json.dumps(return_list, ensure_ascii=False)
-
-
 @list_Request.route("/insertnewlist", methods=['POST'])
 def insert_new_List():
     if not request.json:
@@ -129,3 +108,29 @@ def __delete_list_data(account, list_name):
         sql_command = "delete from user_list_info where account = '%s' and listname = '%s' " % (account, list_name)
         mysql_command(sql_command)
 
+
+@list_Request.route("/getalllistdata", methods=['POST'])
+def get_all_list_data():
+    if not request.json:
+        abort(404)
+
+    # 撈資料 select listname,count(listkey) as people_count,group_image_code from user_list_info where account = 'swshawnwu@gmail.com' group by listname
+
+    # 改圖片 update user_list_info SET group_image_uri = 'https://i.imgur.com/oKTl5Ka.jpg' where account = 'swshawnwu@gmail.com' and listname = '美國團'
+
+    json_dict = request.json
+    account = json_dict['account']
+    sql_command = "select listname,count(listkey) as people_count,group_image_uri from user_list_info where account = '%s' group by listname" % (
+        str(account))
+
+    result = get_mysql_data(sql_command)
+
+    return_list = []
+
+    if result is not None:
+        for data in result:
+            print(data)
+            item_json = {'listname': data[0], 'people_count': data[1], 'group_image_uri': data[2]}
+            return_list.append(item_json)
+
+    return json.dumps(return_list, ensure_ascii=False)
