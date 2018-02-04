@@ -120,7 +120,7 @@ def get_all_list_data():
 
     json_dict = request.json
     account = json_dict['account']
-    sql_command = "select listname,count(listkey) as people_count,group_image_uri from user_list_info where account = '%s' group by listname" % (
+    sql_command = "select listname,count(listkey)-1 as people_count,group_image_uri from user_list_info where account = '%s' group by listname" % (
         str(account))
 
     result = get_mysql_data(sql_command)
@@ -134,3 +134,36 @@ def get_all_list_data():
             return_list.append(item_json)
 
     return json.dumps(return_list, ensure_ascii=False)
+
+
+@list_Request.route("/creategroup", methods=['POST'])
+def create_group():
+    if not request.json:
+        abort(404)
+
+    json_dict = request.json
+    account = json_dict['account']
+    listname = json_dict['listname']
+    group_image_uri = json_dict['group_image_uri']
+
+    sql_command = "insert into user_list_info values ('%s','%s','','','%s')" % (str(account), str(listname), str(group_image_uri))
+
+    result = mysql_command(sql_command)
+
+    return json.dumps(result, ensure_ascii=False)
+
+
+@list_Request.route("/deletegroup", methods=['POST'])
+def delete_group():
+    if not request.json:
+        abort(404)
+
+    json_dict = request.json
+    account = json_dict['account']
+    listname = json_dict['listname']
+
+    sql_command = "delete from user_list_info where account = '%s' and listname = '%s'" % (str(account), str(listname))
+
+    result = mysql_command(sql_command)
+
+    return json.dumps(result, ensure_ascii=False)
