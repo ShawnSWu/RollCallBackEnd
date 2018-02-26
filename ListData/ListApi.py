@@ -87,7 +87,7 @@ def insert_newData_to_oldList():
         __delete_list_data(account, list_name)
 
 
-    a=None
+    a = None
 
     b = None
 
@@ -99,17 +99,18 @@ def insert_newData_to_oldList():
         # data type is dictionary
         for key in data.keys():
             sql_command = " insert into user_list_info values ('%s', '%s', '%s', '%s', '%s') " % (str(account), str(list_name), str(key), str(data[key]), str(group_image_uri))
+            result = mysql_command(sql_command)
+
             a = str(key)
             b = str(data[key])
             c = str(group_image_uri)
             d = str(list_name)
-            result = mysql_command(sql_command)
             insert_result = result
 
     if insert_result is True:
         return_message = 'insert Success'
     else:
-        return_message = 'insert Fail (SQL Error)'+a+" "+b+" "+c+" "+d
+        return_message = 'insert Fail (SQL Error)'+a+' '+b+' '+c+' '+d
 
     return json.dumps(return_message, ensure_ascii=False)
 
