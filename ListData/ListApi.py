@@ -75,27 +75,16 @@ def insert_newData_to_oldList():
     account = json_dict['account']
     list_name = json_dict['list_name']
     # data_list type is list
-    data_list = json_dict['data_list']
-    group_image_uri = json_dict['group_image_uri']
+    list_key = json_dict['list_key']
+    list_value = json_dict['list_value']
 
-    insert_result = None
 
     # if insert_type != "extra_add":
     #     # another new_add,change_add 都一樣 先刪除 在全部加入
     #     __delete_list_data(account, list_name)
 
-    aaa = None
-    sql_command = "insert into user_list_info values ('%s', '%s', '%s', '%s', '%s') " % (
-    'swshawnwu@gmail.com', 'efff', 'C8:46:BC:D3:11:99', 'Rollcall456', 'https://i.imgur.com/G16NNos.jpg')
-    result = mysql_command(sql_command)
-    insert_result = result
-    # for data in data_list:
-    #     # data type is dictionary
-    #     for key in data.keys():
-    #         sql_command = "insert into user_list_info values ('%s', '%s', '%s', '%s', '%s') " % ('swshawnwu@gmail.com', 'efff', 'C8:46:BC:D3:26:05', 'Rollcall9487', 'https://i.imgur.com/G16NNos.jpg')
-    #         result = mysql_command(sql_command)
-    #         insert_result = result
-
+    sql_command = " insert into user_list_info values ('%s', '%s', '%s', '%s', '%s') " % (str(account), str(list_name), str(list_key), str(list_value), str(group_image_uri))
+    insert_result = mysql_command(sql_command)
 
     if insert_result is True:
         return_message = 'insert Success'
