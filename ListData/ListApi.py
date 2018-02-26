@@ -80,10 +80,11 @@ def insert_newData_to_oldList():
 
     insert_result = None
 
-    if insert_type != "extra_add":
-        # another new_add,change_add 都一樣 先刪除 在全部加入
-        __delete_list_data(account, list_name)
+    # if insert_type != "extra_add":
+    #     # another new_add,change_add 都一樣 先刪除 在全部加入
+    #     __delete_list_data(account, list_name)
 
+    aaa = None
 
     for data in data_list:
         # data type is dictionary
