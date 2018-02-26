@@ -49,7 +49,7 @@
         <entry file="file://$PROJECT_DIR$/ListData/ListApi.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="418">
-              <caret line="92" column="24" lean-forward="false" selection-start-line="92" selection-start-column="24" selection-end-line="92" selection-end-column="24" />
+              <caret line="92" column="93" lean-forward="false" selection-start-line="92" selection-start-column="93" selection-end-line="92" selection-end-column="93" />
               <folding>
                 <element signature="e#0#27#0" expanded="true" />
               </folding>
@@ -770,7 +770,7 @@
     <entry file="file://$PROJECT_DIR$/ListData/ListApi.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="418">
-          <caret line="92" column="24" lean-forward="false" selection-start-line="92" selection-start-column="24" selection-end-line="92" selection-end-column="24" />
+          <caret line="92" column="93" lean-forward="false" selection-start-line="92" selection-start-column="93" selection-end-line="92" selection-end-column="93" />
           <folding>
             <element signature="e#0#27#0" expanded="true" />
           </folding>
