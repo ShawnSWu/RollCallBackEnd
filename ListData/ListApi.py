@@ -76,7 +76,7 @@ def insert_newData_to_oldList():
     list_name = json_dict['list_name']
     # data_list type is list
     data_list = json_dict['data_list']
-    image_uri = json_dict['image_uri']
+    group_image_uri = json_dict['group_image_uri']
 
     return_message = None
 
@@ -90,7 +90,7 @@ def insert_newData_to_oldList():
     for data in data_list:
         # data type is dictionary
         for key in data.keys():
-            sql_command = " insert into user_list_info values ('%s', '%s', '%s', '%s', '%s') " % (str(account), str(list_name), str(key), str(data[key]), str(image_uri))
+            sql_command = " insert into user_list_info values ('%s', '%s', '%s', '%s', '%s') " % (str(account), str(list_name), str(key), str(data[key]), str(group_image_uri))
             result = mysql_command(sql_command)
             insert_result = result
 
