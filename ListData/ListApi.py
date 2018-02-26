@@ -77,6 +77,7 @@ def insert_newData_to_oldList():
     # data_list type is list
     list_key = json_dict['list_key']
     list_value = json_dict['list_value']
+    group_image_uri = json_dict['group_image_uri']
 
 
     # if insert_type != "extra_add":
