@@ -86,12 +86,11 @@ def insert_newData_to_oldList():
         # another new_add,change_add 都一樣 先刪除 在全部加入
         __delete_list_data(account, list_name)
 
-    sql_command = "insert into user_list_info values "
 
     for data in data_list:
         # data type is dictionary
         for key in data.keys():
-            sql_command += " insert into user_list_info values ('%s', '%s', '%s', '%s', '%s') ," % (str(account), str(list_name), str(key), str(data[key]), str(image_uri))
+            sql_command = " insert into user_list_info values ('%s', '%s', '%s', '%s', '%s') ," % (str(account), str(list_name), str(key), str(data[key]), str(image_uri))
             result = mysql_command(sql_command)
             insert_result = result
 
