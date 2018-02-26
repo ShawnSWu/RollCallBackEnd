@@ -85,13 +85,16 @@ def insert_newData_to_oldList():
     #     __delete_list_data(account, list_name)
 
     aaa = None
-
-    for data in data_list:
-        # data type is dictionary
-        for key in data.keys():
-            sql_command = "insert into user_list_info values ('%s', '%s', '%s', '%s', '%s') " % ('swshawnwu@gmail.com', 'ijjnnnn', 'C8:46:BC:D3:26:05', 'Rollcall9487', 'https://i.imgur.com/G16NNos.jpg')
-            result = mysql_command(sql_command)
-            insert_result = result
+    sql_command = "insert into user_list_info values ('%s', '%s', '%s', '%s', '%s') " % (
+    'swshawnwu@gmail.com', 'efff', 'C8:46:BC:D3:11:99', 'Rollcall456', 'https://i.imgur.com/G16NNos.jpg')
+    result = mysql_command(sql_command)
+    insert_result = result
+    # for data in data_list:
+    #     # data type is dictionary
+    #     for key in data.keys():
+    #         sql_command = "insert into user_list_info values ('%s', '%s', '%s', '%s', '%s') " % ('swshawnwu@gmail.com', 'efff', 'C8:46:BC:D3:26:05', 'Rollcall9487', 'https://i.imgur.com/G16NNos.jpg')
+    #         result = mysql_command(sql_command)
+    #         insert_result = result
 
 
     if insert_result is True:
