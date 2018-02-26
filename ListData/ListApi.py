@@ -80,6 +80,8 @@ def insert_newData_to_oldList():
 
     return_message = None
 
+    insert_result = None
+
     if insert_type != "extra_add":
         # another new_add,change_add 都一樣 先刪除 在全部加入
         __delete_list_data(account, list_name)
@@ -89,9 +91,10 @@ def insert_newData_to_oldList():
     for data in data_list:
         # data type is dictionary
         for key in data.keys():
-            sql_command += " ('%s', '%s', '%s', '%s', '%s') ," % (str(account), str(list_name), str(key), str(data[key]), str(image_uri))
+            sql_command += " insert into user_list_info values ('%s', '%s', '%s', '%s', '%s') ," % (str(account), str(list_name), str(key), str(data[key]), str(image_uri))
+            result = mysql_command(sql_command)
+            insert_result = result
 
-    insert_result = mysql_command(sql_command)
     if insert_result is True:
         return_message = 'insert Success'
     else:
