@@ -162,3 +162,19 @@ def delete_group():
     result = mysql_command(sql_command)
 
     return json.dumps(result, ensure_ascii=False)
+
+
+@list_Request.route("/listcount", methods=['POST'])
+def get_list_count():
+    if not request.json:
+        abort(404)
+
+    json_dict = request.json
+    account = json_dict['account']
+    listname = json_dict['list_name']
+
+    sql_command = "select count(*)-1 from user_list_info where account = '%s' and listname = '%s'" % (str(account), str(listname))
+
+    result = get_mysql_return_data(sql_command)
+
+    return json.dumps(result[0], ensure_ascii=False)

@@ -2,8 +2,6 @@ from flask import Blueprint
 from flask import request, abort
 from RC_sql.mysql import *
 import hashlib, json, re
-from Login import UserInfo
-
 
 account_Request = Blueprint('account_request', __name__)
 
@@ -22,6 +20,13 @@ def login():
     return json.dumps(auth_account(account, sha256_password), ensure_ascii=False)
 
 
+def validate_email(email):
+    if len(email) > 7:
+        if re.match("^.+\\@(\\[?)[a-zA-Z0-9\\-\\.]+\\.([a-zA-Z]{2,3}|[0-9]{1,3})(\\]?)$", email) is not None:
+            return True
+    return False
+
+
 def auth_account(account, sha256_password):
     if validate_email(str(account)) is not True:
         return 'account is not ok'
@@ -30,17 +35,7 @@ def auth_account(account, sha256_password):
             str(account), str(sha256_password))
         rowcount = get_row_count(sql_command)
         # 1 equals only a data
-        if rowcount == 1:
-            return True
-        else:
-            return False
-
-
-def validate_email(email):
-    if len(email) > 7:
-        if re.match("^.+\\@(\\[?)[a-zA-Z0-9\\-\\.]+\\.([a-zA-Z]{2,3}|[0-9]{1,3})(\\]?)$", email) is not None:
-            return True
-    return False
+        return rowcount == 1
 
 
 @account_Request.route("/signup", methods=['POST'])

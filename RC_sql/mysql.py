@@ -57,3 +57,20 @@ def get_mysql_data(execute_command):
         db.close()
 
     return result
+
+
+def get_mysql_return_data(execute_command):
+    db = MySQLdb.connect(host=host, user=user, passwd=passwd, db=db_name, charset=charset)
+    cursor = db.cursor()
+    sql_command = execute_command
+    result = None
+    try:
+        cursor.execute(sql_command)
+        result = cursor.fetchone()
+        db.commit()
+    except MySQLdb.Error:
+        db.rollback()
+    finally:
+        db.close()
+
+    return result
