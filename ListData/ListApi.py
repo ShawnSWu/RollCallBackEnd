@@ -201,7 +201,7 @@ def get_all_list_name():
     return json.dumps(return_list, ensure_ascii=False)
 
 
-@list_Request.route("/getsomegroulistdata", methods=['POST'])
+@list_Request.route("/getsomegrouplistdata", methods=['POST'])
 def get_somegroup_list_data():
     if not request.json:
         abort(404)
