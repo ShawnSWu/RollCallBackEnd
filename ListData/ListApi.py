@@ -192,7 +192,7 @@ def get_all_list_name():
 
     result = get_mysql_data(sql_command)
 
-    return_list = [""]
+    return_list = []
 
     if result is not None:
         for data in result:
