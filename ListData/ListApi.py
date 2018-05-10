@@ -178,3 +178,24 @@ def get_list_count():
     result = get_mysql_return_data(sql_command)
 
     return json.dumps(result[0], ensure_ascii=False)
+
+
+@list_Request.route("/alllistname", methods=['POST'])
+def get_all_list_name():
+    if not request.json:
+        abort(404)
+
+    json_dict = request.json
+    account = json_dict['account']
+
+    sql_command = "select listname from user_list_info where account = '%s' group by listname" % (str(account))
+
+    result = get_mysql_data(sql_command)
+
+    return_list = [""]
+
+    if result is not None:
+        for data in result:
+            return_list.append(data[0])
+
+    return json.dumps(return_list, ensure_ascii=False)
