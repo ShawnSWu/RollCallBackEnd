@@ -199,3 +199,25 @@ def get_all_list_name():
             return_list.append(data[0])
 
     return json.dumps(return_list, ensure_ascii=False)
+
+
+@list_Request.route("/getsomegroulistdata", methods=['POST'])
+def get_somegroup_list_data():
+    if not request.json:
+        abort(404)
+
+    json_dict = request.json
+    account = json_dict['account']
+    listname = json_dict['list_name']
+
+    sql_command = "select count(listkey)-1 as people_count,group_image_uri from user_list_info where account = '%s' and listname = '%s'" % (
+        str(account), str(listname))
+
+    result = get_mysql_data(sql_command)
+
+    if result is not None:
+        for data in result:
+            print(data)
+            item_json = {'people_count': data[0], 'group_image_uri': data[1]}
+
+    return json.dumps(item_json, ensure_ascii=False)
