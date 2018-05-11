@@ -107,6 +107,24 @@ def get_procfile_data():
     return json.dumps(return_json_type, ensure_ascii=False)
 
 
+@account_Request.route("/getprocfilegroupdevicedate", methods=['POST'])
+def get_procfile_group_and_deivce_data():
+    if not request.json:
+        abort(404)
+
+    json_dict = request.json
+    account = json_dict['account']
+    password = json_dict['password']
+
+    sql_command = "select count(listname)-1 from user_list_info where account = '%s' group by listname" % account
+
+    insert_result = get_mysql_data(sql_command)
+
+    device_of_group = insert_result
+
+    return json.dumps(device_of_group, ensure_ascii=False)
+
+
 @account_Request.route("/saveprofileimage", methods=['POST'])
 def save_profile_image():
     if not request.json:
