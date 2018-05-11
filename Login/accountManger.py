@@ -120,9 +120,13 @@ def get_procfile_group_and_deivce_data():
 
     insert_result = get_mysql_data(sql_command)
 
-    device_of_group = insert_result
+    return_list = []
 
-    return json.dumps(device_of_group, ensure_ascii=False)
+    if insert_result is not None:
+        for data in insert_result:
+            return_list.append(data[0])
+
+    return json.dumps(return_list, ensure_ascii=False)
 
 
 @account_Request.route("/saveprofileimage", methods=['POST'])
