@@ -64,6 +64,24 @@ def finsh_todo():
     return json.dumps(result, ensure_ascii=False)
 
 
+@todo_request.route("/updatetodocontent", methods=['POST'])
+def finsh_todo():
+    if not request.json:
+        abort(404)
+
+    json_dict = request.json
+    account = json_dict['account']
+    password = json_dict['password']
+    todo_title = json_dict['todo_title']
+    old_todo_title = json_dict['old_todo_title']
+
+    sql_command = "update todo_note set todo_title = '%s' where account = '%s' and todo_title = '%s' " % (
+        str(todo_title), str(account),str(old_todo_title))
+    result = mysql_command(sql_command)
+
+    return json.dumps(result, ensure_ascii=False)
+
+
 @todo_request.route("/deletetodo", methods=['POST'])
 def delete_todo():
     if not request.json:
