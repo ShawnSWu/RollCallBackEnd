@@ -6,7 +6,7 @@ import json
 todo_request = Blueprint('todo_request', __name__)
 
 
-@todo_request.route("/gettododate", methods=['POST'])
+@todo_request.route("/gettododata", methods=['POST'])
 def get_todo_data():
     if not request.json:
         abort(404)
