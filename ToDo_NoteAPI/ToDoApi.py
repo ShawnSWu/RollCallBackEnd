@@ -62,3 +62,19 @@ def finsh_todo():
     result = mysql_command(sql_command)
 
     return json.dumps(result, ensure_ascii=False)
+
+
+@todo_request.route("/deletetodo", methods=['POST'])
+def delete_todo():
+    if not request.json:
+        abort(404)
+
+    json_dict = request.json
+    account = json_dict['account']
+    password = json_dict['password']
+    todo_title = json_dict['todo_title']
+
+    sql_command = "delete from todo_note where account = '%s' and todo_title = '%s'" % (str(account), str(todo_title))
+    result = mysql_command(sql_command)
+
+    return json.dumps(result, ensure_ascii=False)
