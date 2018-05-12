@@ -38,10 +38,9 @@ def create_new_todo():
     password = json_dict['password']
     todo_title = json_dict['todo_title']
     todo_createtime = json_dict['todo_createtime']
-    todo_isFinsh = json_dict['todo_isFinsh']
 
-    sql_command = "insert into todo_note values('%s','%s','%s',%d) " % (
-        str(account), str(todo_title), str(todo_createtime), todo_isFinsh)
+    sql_command = "insert into todo_note values('%s','%s','%s', 0) " % (
+        str(account), str(todo_title), str(todo_createtime))
     result = mysql_command(sql_command)
 
     return json.dumps(result, ensure_ascii=False)
@@ -56,8 +55,9 @@ def finsh_todo():
     account = json_dict['account']
     password = json_dict['password']
     todo_title = json_dict['todo_title']
+    todo_isFinsh = json_dict['todo_isFinsh']
 
-    sql_command = "update todo_note set todo_isFinsh = 1 where account = '%s' and todo_title = '%s' " % (
+    sql_command = "update todo_note set todo_isFinsh = %d where account = '%s' and todo_title = '%s' " % (todo_isFinsh,
         str(account), str(todo_title))
     result = mysql_command(sql_command)
 
