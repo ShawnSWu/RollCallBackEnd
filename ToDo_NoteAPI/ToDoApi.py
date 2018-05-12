@@ -65,7 +65,7 @@ def finsh_todo():
 
 
 @todo_request.route("/updatetodocontent", methods=['POST'])
-def finsh_todo():
+def update_todo_content():
     if not request.json:
         abort(404)
 
