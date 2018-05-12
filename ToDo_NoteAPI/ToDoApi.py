@@ -46,7 +46,7 @@ def create_new_todo():
     return json.dumps(result, ensure_ascii=False)
 
 
-@todo_request.route("/finshtodo", methods=['POST'])
+@todo_request.route("/updatefinshtodo", methods=['POST'])
 def finsh_todo():
     if not request.json:
         abort(404)
