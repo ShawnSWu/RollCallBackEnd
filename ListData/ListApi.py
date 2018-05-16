@@ -61,12 +61,7 @@ def insert_newData_to_oldList():
     sql_command = " insert into user_list_info values ('%s', '%s', '%s', '%s', '%s') " % (str(account), str(list_name), str(list_key), str(list_value), str(group_image_uri))
     insert_result = mysql_command(sql_command)
 
-    if insert_result is True:
-        return_message = 'insert Success'
-    else:
-        return_message = 'insert Fail (SQL Error)'
-
-    return json.dumps(return_message, ensure_ascii=False)
+    return json.dumps(insert_result, ensure_ascii=False)
 
 
 def __delete_list_data(account, list_name):
