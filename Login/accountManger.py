@@ -77,11 +77,8 @@ def auth_if_repeat_account(signup_account):
             str(signup_account))
         rowcount = get_row_count(sql_command)
         # 0 equals no any repeat data
-        if rowcount == 0:
-            return False
-        else:
-            return True
-
+        return rowcount == 0
+    
 
 @account_Request.route("/getprocfiledata", methods=['POST'])
 def get_procfile_data():
