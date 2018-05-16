@@ -39,8 +39,10 @@ def create_new_todo():
     todo_title = json_dict['todo_title']
     todo_createtime = json_dict['todo_createtime']
 
-    sql_command = "insert into todo_note values('%s','%s','%s', 0) " % (
-        str(account), str(todo_title), str(todo_createtime))
+    todo_title = todo_title.replace("'", "")
+    todo_title = todo_title.replace(";", " ")
+
+    sql_command = "insert into todo_note values('%s','%s','%s', 0) ;" % (str(account), str(todo_title), str(todo_createtime))
     result = mysql_command(sql_command)
 
     return json.dumps(result, ensure_ascii=False)

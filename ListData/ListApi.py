@@ -59,10 +59,7 @@ def __auth_if_repeat_list(account, new_list_name):
         str(account), str(new_list_name))
     rowcount = get_row_count(sql_command)
 
-    if rowcount >= 1:
-        return True
-    else:
-        return False
+    return rowcount >= 1
 
 
 @list_Request.route("/insertnewdatatolist", methods=['POST'])
@@ -79,6 +76,8 @@ def insert_newData_to_oldList():
     list_value = json_dict['list_value']
     group_image_uri = json_dict['group_image_uri']
 
+    list_value = list_value.replace("'", " ")
+    list_value = list_value.replace(";", " ")
 
     # if insert_type != "extra_add":
     #     # another new_add,change_add 都一樣 先刪除 在全部加入
@@ -140,6 +139,9 @@ def create_group():
     account = json_dict['account']
     listname = json_dict['listname']
     group_image_uri = json_dict['group_image_uri']
+
+    listname = listname.replace("'", " ")
+    listname = listname.replace(";", " ")
 
     sql_command = "insert into user_list_info values ('%s','%s','','','%s')" % (str(account), str(listname), str(group_image_uri))
 
