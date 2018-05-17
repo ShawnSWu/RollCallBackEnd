@@ -73,3 +73,27 @@ example:
 ```
 Procfile data List
 
+```
+
+
+## Procfile Device of group Data
+#### Request
+- Method: **POST**
+- URL:  ```/rollcallbackend.herokuapp.com/account/getprocfilegroupdevicedate```
+   
+- Headers：
+    ```Content-Type: application/json```
+- Body:
+
+```
+example:
+
+{
+  "account":"swshawnwu@gmail.com",
+  "password": "6666666666"
+}
+```
+
+#### Response
+```
+Group and device data
